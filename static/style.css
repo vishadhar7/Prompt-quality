@@ -1,0 +1,521 @@
+
+/* =========================================
+   GLOBAL RESET
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f6fb;
+    color: #172033;
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   IMPORTANT: HIDE ELEMENTS
+========================================= */
+
+.hidden {
+    display: none !important;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: #243b80;
+    color: white;
+    padding: 22px 7%;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+}
+
+.logo {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    color: #3659d9;
+    font-size: 22px;
+    font-weight: bold;
+    border-radius: 10px;
+    flex-shrink: 0;
+}
+
+header h1 {
+    font-size: 23px;
+    margin-bottom: 3px;
+}
+
+header p {
+    font-size: 14px;
+    color: #dce4ff;
+}
+
+
+/* =========================================
+   MAIN CONTAINER
+========================================= */
+
+main {
+    width: 90%;
+    max-width: 1150px;
+    margin: 30px auto;
+}
+
+.container {
+    background: white;
+    padding: 28px;
+    margin-bottom: 25px;
+    border-radius: 12px;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.06);
+}
+
+h2 {
+    font-size: 21px;
+    margin-bottom: 22px;
+    color: #243b80;
+}
+
+h3 {
+    font-size: 17px;
+    margin-bottom: 12px;
+}
+
+
+/* =========================================
+   LABELS AND INPUTS
+========================================= */
+
+label {
+    display: block;
+    font-weight: 600;
+    margin: 17px 0 8px;
+}
+
+textarea,
+select,
+input[type="text"] {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #d4d9e5;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    background: #fff;
+    color: #172033;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 90px;
+}
+
+textarea:focus,
+select:focus,
+input:focus {
+    outline: none;
+    border-color: #3659d9;
+    box-shadow: 0 0 0 3px rgba(54, 89, 217, 0.1);
+}
+
+
+/* =========================================
+   MODE BUTTONS
+========================================= */
+
+.mode-buttons {
+    display: flex;
+    gap: 10px;
+    margin: 12px 0 20px;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.2s ease;
+}
+
+.mode {
+    flex: 1;
+    padding: 13px;
+    background: #edf0f7;
+    color: #172033;
+}
+
+.mode.active {
+    background: #3659d9;
+    color: white;
+}
+
+.mode:hover {
+    background: #dce3fa;
+}
+
+.mode.active:hover {
+    background: #2948bd;
+}
+
+
+/* =========================================
+   MODEL SELECTION
+========================================= */
+
+.model-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.model-row select {
+    flex: 1;
+}
+
+.secondary {
+    padding: 12px 18px;
+    background: #e9edff;
+    color: #3659d9;
+}
+
+.secondary:hover {
+    background: #dce3ff;
+}
+
+.hint {
+    font-size: 13px;
+    color: #68738a;
+    margin-top: 8px;
+}
+
+
+/* =========================================
+   TEMPERATURE SLIDER
+========================================= */
+
+input[type="range"] {
+    width: 100%;
+    margin: 12px 0;
+    accent-color: #3659d9;
+    cursor: pointer;
+}
+
+#tempval {
+    font-weight: bold;
+    color: #3659d9;
+}
+
+
+/* =========================================
+   FILE UPLOAD
+========================================= */
+
+input[type="file"] {
+    width: 100%;
+    padding: 14px;
+    border: 1px dashed #8295ee;
+    background: #f6f7ff;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+
+/* =========================================
+   PROMPT STRATEGIES
+========================================= */
+
+.strategies {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin: 12px 0 22px;
+}
+
+.strategies label {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin: 0;
+    padding: 13px;
+    border: 1px solid #e1e5ef;
+    border-radius: 8px;
+    background: #fafbff;
+    cursor: pointer;
+}
+
+.strategies label:hover {
+    border-color: #8295ee;
+    background: #f2f4ff;
+}
+
+.strategies input {
+    accent-color: #3659d9;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+
+/* =========================================
+   GENERATE BUTTON
+========================================= */
+
+.primary {
+    width: 100%;
+    padding: 15px;
+    background: #3659d9;
+    color: white;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.primary:hover {
+    background: #2948bd;
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+
+/* =========================================
+   LOADING SECTION
+========================================= */
+
+#loading {
+    text-align: center;
+    padding: 28px;
+    border-left: 4px solid #3659d9;
+}
+
+#loading h3 {
+    color: #3659d9;
+}
+
+#loading p {
+    color: #68738a;
+}
+
+
+/* =========================================
+   ERROR MESSAGE
+========================================= */
+
+.error {
+    padding: 15px;
+    margin-bottom: 20px;
+    background: #fff0f0;
+    color: #c62828;
+    border: 1px solid #ffcaca;
+    border-left: 4px solid #dc3545;
+    border-radius: 8px;
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================
+   RESULTS SECTION
+========================================= */
+
+#results {
+    margin-top: 25px;
+}
+
+.winner {
+    padding: 18px;
+    margin: 15px 0;
+    background: #eef2ff;
+    border-left: 4px solid #3659d9;
+    border-radius: 8px;
+    line-height: 1.8;
+}
+
+.winner b {
+    display: block;
+    color: #243b80;
+    font-size: 17px;
+}
+
+
+/* =========================================
+   RESULTS TABLE
+========================================= */
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    margin: 20px 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 650px;
+    background: white;
+}
+
+thead {
+    background: #243b80;
+    color: white;
+}
+
+th,
+td {
+    padding: 13px;
+    text-align: center;
+    border: 1px solid #e2e6ef;
+    font-size: 13px;
+}
+
+th {
+    font-weight: 600;
+}
+
+tbody tr:nth-child(even) {
+    background: #f6f8fd;
+}
+
+tbody tr:hover {
+    background: #edf1ff;
+}
+
+
+/* =========================================
+   GENERATED ANSWERS
+========================================= */
+
+.answer-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    margin-top: 18px;
+}
+
+.answer {
+    padding: 20px;
+    background: #fafbff;
+    border: 1px solid #e0e5f0;
+    border-radius: 10px;
+    overflow-wrap: anywhere;
+}
+
+.answer h3 {
+    color: #3659d9;
+    border-bottom: 1px solid #e0e5f0;
+    padding-bottom: 10px;
+}
+
+.answer p {
+    margin: 10px 0;
+    font-size: 14px;
+    white-space: pre-wrap;
+}
+
+.score {
+    color: #243b80;
+    font-weight: bold;
+}
+
+
+/* =========================================
+   DOWNLOAD BUTTON
+========================================= */
+
+#download {
+    margin-top: 20px;
+    padding: 13px 18px;
+    background: #e9edff;
+    color: #3659d9;
+}
+
+#download:hover {
+    background: #dce3ff;
+}
+
+
+/* =========================================
+   RESPONSIVE DESIGN
+========================================= */
+
+@media (max-width: 768px) {
+
+    header {
+        padding: 18px 5%;
+    }
+
+    header h1 {
+        font-size: 18px;
+    }
+
+    main {
+        width: 94%;
+        margin: 20px auto;
+    }
+
+    .container {
+        padding: 20px;
+    }
+
+    .answer-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .strategies {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+@media (max-width: 480px) {
+
+    header {
+        gap: 10px;
+    }
+
+    header h1 {
+        font-size: 16px;
+    }
+
+    header p {
+        font-size: 12px;
+    }
+
+    .logo {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+
+    .mode-buttons {
+        flex-direction: column;
+    }
+
+    .model-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .model-row button {
+        width: 100%;
+    }
+
+    .container {
+        padding: 16px;
+    }
+
+}

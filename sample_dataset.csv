@@ -1,0 +1,16 @@
+question,reference_answer
+What is machine learning?,Machine learning is a branch of artificial intelligence that enables computers to learn patterns from data and make predictions without being explicitly programmed.
+What is cloud computing?,"Cloud computing is the delivery of computing services such as servers, storage, databases and software over the internet."
+Why is regular exercise important?,"Regular exercise improves physical fitness, strengthens muscles, supports heart health and improves mental well-being."
+What is renewable energy?,"Renewable energy comes from naturally replenished sources such as sunlight, wind, water and geothermal heat."
+What is artificial intelligence?,"Artificial intelligence is the ability of machines to perform tasks that typically require human intelligence, such as learning, reasoning and problem solving."
+Explain database normalization.,Database normalization is the process of organizing database tables to reduce data redundancy and improve data integrity.
+What is natural language processing?,"Natural language processing is a branch of AI that enables computers to understand, interpret and generate human language."
+What is deep learning?,Deep learning is a subset of machine learning that uses multiple layers of neural networks to learn complex patterns from data.
+What is cybersecurity?,"Cybersecurity involves protecting computers, networks and data from unauthorized access, attacks and damage."
+What is an operating system?,"An operating system is system software that manages computer hardware, software resources and provides services to applications."
+What is overfitting in machine learning?,"Overfitting occurs when a model learns training data too closely, including noise, and performs poorly on unseen data."
+What is data preprocessing?,"Data preprocessing involves cleaning, transforming and organizing raw data before using it for analysis or machine learning."
+What is an API?,An API is an Application Programming Interface that allows different software applications to communicate with each other.
+What is blockchain?,Blockchain is a distributed digital ledger that records transactions securely across multiple computers.
+What is supervised learning?,Supervised learning is a machine learning approach where a model learns from labeled training data to predict outputs for new inputs.

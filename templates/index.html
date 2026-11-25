@@ -1,0 +1,357 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Prompt Quality Comparison Assistant</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <header class="header">
+        <h1>Prompt Quality Comparison Assistant</h1>
+        <p>Compare prompting strategies using Generative AI and Ollama</p>
+    </header>
+
+    <main class="main-container">
+
+        <!-- CONNECTION STATUS -->
+
+        <section class="status-section">
+            <span id="statusDot" class="status-dot"></span>
+            <span id="status">Checking Ollama connection...</span>
+        </section>
+
+
+        <!-- INPUT MODE -->
+
+        <section class="container">
+
+            <h2>Input Configuration</h2>
+
+            <div class="mode-buttons">
+
+                <button type="button"
+                        class="mode active"
+                        id="manualMode">
+                    Manual Input
+                </button>
+
+                <button type="button"
+                        class="mode"
+                        id="datasetMode">
+                    Dataset Upload
+                </button>
+
+            </div>
+
+
+            <!-- MANUAL INPUT -->
+
+            <div id="manualSection">
+
+                <div class="form-group">
+
+                    <label for="question">
+                        Enter Your Question
+                    </label>
+
+                    <textarea
+                        id="question"
+                        rows="4"
+                        placeholder="Example: What is machine learning?">
+                    </textarea>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="reference">
+                        Reference Answer
+                    </label>
+
+                    <textarea
+                        id="reference"
+                        rows="4"
+                        placeholder="Enter the expected or reference answer">
+                    </textarea>
+
+                </div>
+
+            </div>
+
+
+            <!-- DATASET INPUT -->
+
+            <div id="datasetSection" class="hidden">
+
+                <div class="form-group">
+
+                    <label for="datasetFile">
+                        Upload CSV Dataset
+                    </label>
+
+                    <input
+                        type="file"
+                        id="datasetFile"
+                        accept=".csv">
+
+                    <p class="help-text">
+                        CSV must contain two columns:
+                        question and reference_answer.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- MODEL SELECTION -->
+
+            <div class="form-group">
+
+                <label for="model">
+                    Select Ollama Model
+                </label>
+
+                <select id="model">
+
+                    <option value="llama3.2:3b">
+                        llama3.2:3b
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- PROMPTING STRATEGIES -->
+
+            <div class="strategy-section">
+
+                <h3>Select Prompting Strategies</h3>
+
+                <p class="help-text">
+                    Select one or more strategies to compare.
+                </p>
+
+                <div class="strategy-grid">
+
+                    <label class="strategy-card">
+
+                        <input
+                            type="checkbox"
+                            name="strategy"
+                            value="Direct Instruction"
+                            checked>
+
+                        <span>
+                            <strong>Direct Instruction</strong>
+                            <small>
+                                Provides a direct and concise answer.
+                            </small>
+                        </span>
+
+                    </label>
+
+
+                    <label class="strategy-card">
+
+                        <input
+                            type="checkbox"
+                            name="strategy"
+                            value="Step-by-Step"
+                            checked>
+
+                        <span>
+                            <strong>Step-by-Step</strong>
+                            <small>
+                                Breaks the response into logical steps.
+                            </small>
+                        </span>
+
+                    </label>
+
+
+                    <label class="strategy-card">
+
+                        <input
+                            type="checkbox"
+                            name="strategy"
+                            value="Structured Answer"
+                            checked>
+
+                        <span>
+                            <strong>Structured Answer</strong>
+                            <small>
+                                Organizes answers using headings and bullets.
+                            </small>
+                        </span>
+
+                    </label>
+
+
+                    <label class="strategy-card">
+
+                        <input
+                            type="checkbox"
+                            name="strategy"
+                            value="Expert Role"
+                            checked>
+
+                        <span>
+                            <strong>Expert Role</strong>
+                            <small>
+                                Generates answers from an expert perspective.
+                            </small>
+                        </span>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+
+            <!-- COMPARE BUTTON -->
+
+            <button type="button" id="compare" class="primary-button">
+                Generate and Compare
+            </button>
+
+        </section>
+
+
+        <!-- LOADING -->
+
+        <section id="loading" class="loading hidden">
+
+            <div class="spinner"></div>
+
+            <h3>Processing your request...</h3>
+
+            <p>
+                Ollama is generating and evaluating the answers.
+                Please wait.
+            </p>
+
+        </section>
+
+
+        <!-- ERROR -->
+
+        <section id="error" class="error hidden">
+
+            <h3>Something went wrong</h3>
+
+            <p id="errorMessage"></p>
+
+        </section>
+
+
+        <!-- RESULTS -->
+
+        <section id="results" class="container hidden">
+
+            <h2>Comparison Results</h2>
+
+            <p class="help-text">
+                Scores are AI-generated estimates on a scale of 0 to 10.
+            </p>
+
+
+            <!-- MANUAL RESULTS -->
+
+            <div id="manualResults">
+
+                <div id="winner" class="winner"></div>
+
+                <h3>Score Comparison</h3>
+
+                <div class="table-wrapper">
+
+                    <table id="scoreTable">
+
+                        <thead>
+                            <tr>
+                                <th>Strategy</th>
+                                <th>Accuracy</th>
+                                <th>Relevance</th>
+                                <th>Completeness</th>
+                                <th>Clarity</th>
+                                <th>Overall</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="scoreTableBody"></tbody>
+
+                    </table>
+
+                </div>
+
+
+                <h3>Generated Answers</h3>
+
+                <div id="answerCards"></div>
+
+            </div>
+
+
+            <!-- DATASET RESULTS -->
+
+            <div id="datasetResults" class="hidden">
+
+                <h3>Strategy Ranking</h3>
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Strategy</th>
+                                <th>Accuracy</th>
+                                <th>Relevance</th>
+                                <th>Completeness</th>
+                                <th>Clarity</th>
+                                <th>Overall</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="rankingBody"></tbody>
+
+                    </table>
+
+                </div>
+
+
+                <h3>Evaluation Details</h3>
+
+                <div id="datasetDetails"></div>
+
+            </div>
+
+            <p id="resultNote" class="help-text"></p>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+        <p>Prompt Quality Comparison Assistant | Powered by Ollama</p>
+    </footer>
+
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
